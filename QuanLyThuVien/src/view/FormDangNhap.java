@@ -5,17 +5,23 @@
  */
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Truong Tran
  */
-public class FormDangNhap extends javax.swing.JFrame {
+public class FormDangNhap extends javax.swing.JFrame implements ActionListener{
 
     /**
      * Creates new form FormDangNhap
      */
     public FormDangNhap() {
         initComponents();
+        setLocationRelativeTo(null);
+       btnDangNhap.addActionListener(this);
+       btnThoat.addActionListener(this);
     }
 
     /**
@@ -31,7 +37,7 @@ public class FormDangNhap extends javax.swing.JFrame {
         btnDangNhap = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
         txtTaiKhoan = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JPasswordField();
+        txtMatKhau = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -39,14 +45,25 @@ public class FormDangNhap extends javax.swing.JFrame {
         setTitle("Đăng Nhập");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JFormIcons/user.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/user.png"))); // NOI18N
         jLabel1.setText("Đăng Nhập Hệ Thống");
 
-        btnDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JFormIcons/accept.png"))); // NOI18N
+        btnDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/accept.png"))); // NOI18N
         btnDangNhap.setText("Đăng Nhập");
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangNhapActionPerformed(evt);
+            }
+        });
 
-        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JFormIcons/delete.png"))); // NOI18N
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete.png"))); // NOI18N
         btnThoat.setText("Thoát");
+
+        txtTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTaiKhoanActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Tài Khoản: ");
@@ -74,7 +91,7 @@ public class FormDangNhap extends javax.swing.JFrame {
                                 .addGap(50, 50, 50)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                                    .addComponent(txtPassword)))
+                                    .addComponent(txtMatKhau)))
                             .addComponent(btnDangNhap)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
@@ -92,7 +109,7 @@ public class FormDangNhap extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -103,6 +120,14 @@ public class FormDangNhap extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTaiKhoanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTaiKhoanActionPerformed
+
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDangNhapActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,7 +170,32 @@ public class FormDangNhap extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JPasswordField txtMatKhau;
     private javax.swing.JTextField txtTaiKhoan;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      if(e.getSource().equals(btnDangNhap))
+      {
+          btnDangNhap();
+      }else {
+          bntThoat();
+      }
+          
+    }
+    
+    public  void btnDangNhap()
+    {
+        DangNhapEvents dangNhap = new DangNhapEvents();
+        dangNhap.buttonDangNhap(txtTaiKhoan, txtMatKhau);
+        new FormTrangChu().setVisible(true);
+        this.dispose();
+    }
+    
+    public static void bntThoat()
+    {
+         DangNhapEvents dangNhap = new DangNhapEvents();
+         dangNhap.buttonThoat();
+    }
 }

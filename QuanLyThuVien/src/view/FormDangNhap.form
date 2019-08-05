@@ -42,7 +42,7 @@
                               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="txtTaiKhoan" pref="226" max="32767" attributes="0"/>
-                                  <Component id="txtPassword" max="32767" attributes="0"/>
+                                  <Component id="txtMatKhau" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="btnDangNhap" min="-2" max="-2" attributes="0"/>
@@ -69,7 +69,7 @@
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtMatKhau" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="45" max="32767" attributes="0"/>
@@ -89,7 +89,7 @@
           <Font name="Tahoma" size="24" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/JFormIcons/user.png"/>
+          <Image iconType="3" name="/icon/user.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng Nh&#x1ead;p H&#x1ec7; Th&#x1ed1;ng"/>
       </Properties>
@@ -97,22 +97,28 @@
     <Component class="javax.swing.JButton" name="btnDangNhap">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/JFormIcons/accept.png"/>
+          <Image iconType="3" name="/icon/accept.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng Nh&#x1ead;p"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDangNhapActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnThoat">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/JFormIcons/delete.png"/>
+          <Image iconType="3" name="/icon/delete.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTaiKhoan">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTaiKhoanActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="txtPassword">
+    <Component class="javax.swing.JPasswordField" name="txtMatKhau">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
