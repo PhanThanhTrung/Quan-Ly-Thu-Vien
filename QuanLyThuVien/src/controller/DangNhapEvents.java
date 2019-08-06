@@ -6,10 +6,10 @@
 package controller;
 
 import model.DangNhapModel;
-import controller.*;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import view.*;
 
 /**
  *
@@ -17,7 +17,7 @@ import javax.swing.JTextField;
  */
 public class DangNhapEvents {    
     
-    public void buttonDangNhap(JTextField txttaikhoan, JPasswordField txtmatkhau)
+    public boolean buttonDangNhap(JTextField txttaikhoan, JPasswordField txtmatkhau)
     {
         String username = txttaikhoan.getText();
         String password= String.valueOf(txtmatkhau.getPassword());
@@ -25,15 +25,18 @@ public class DangNhapEvents {
         if(username.equalsIgnoreCase("")||password.equalsIgnoreCase(""))
         {
             JOptionPane.showMessageDialog(null,"Trường tài khoản, mật khẩu không được để trống","Lỗi",1);
+            return false;
         }else
         
         if(con)
         {
             JOptionPane.showMessageDialog(null,"Đăng nhập thành công!");
-            
+            //chuyen sang FormTrangChu
+            return true;
         }else
         {
             JOptionPane.showMessageDialog(null,"Tài khoản hoặc mật khẩu không chính xác.");
+            return false;
         }
        
     }

@@ -7,7 +7,10 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import model.*;
+import controller.*;
 /**
  *
  * @author Truong Tran
@@ -26,7 +29,22 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         btnSuaDG.addActionListener(this);
         btnXoaDG.addActionListener(this);
         btnCapNhapDG.addActionListener(this);
-
+        
+        //tab mượn trả Sách
+        //author: Trung
+        btnThemMoi.addActionListener(this);
+        
+        //hiển thị danh sách tên sách
+        comboTenSach.removeAllItems();
+        if(model.Muon.danhSachTenSach()!=null){
+            for (String i:model.Muon.danhSachTenSach()) {
+                comboTenSach.addItem(i);
+            }
+        }
+        else{
+            comboTenSach.addItem("danh sách rỗng");
+        }
+        
     }
 
     /**
@@ -39,6 +57,7 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
     private void initComponents() {
 
         btnGioiTinh = new javax.swing.ButtonGroup();
+        jMenu3 = new javax.swing.JMenu();
         TrangChu = new javax.swing.JTabbedPane();
         docGia = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -72,7 +91,6 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        txtMaMuon = new javax.swing.JTextField();
         txtMaDocGia = new javax.swing.JTextField();
         txtGhiChu = new javax.swing.JTextField();
         txtSoLuong = new javax.swing.JTextField();
@@ -87,8 +105,10 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         btnLuu = new javax.swing.JButton();
         btnCapNhat = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
-        jXDatePicker4 = new org.jdesktop.swingx.JXDatePicker();
-        jXDatePicker5 = new org.jdesktop.swingx.JXDatePicker();
+        dteNgayMuon = new org.jdesktop.swingx.JXDatePicker();
+        dteNgayHenTra = new org.jdesktop.swingx.JXDatePicker();
+        txtMaMuon = new javax.swing.JTextField();
+        dteNgayTra = new org.jdesktop.swingx.JXDatePicker();
         danhMucSach = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
@@ -122,6 +142,8 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         menuTCTheLoai = new javax.swing.JMenuItem();
         menuTCNXB = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+
+        jMenu3.setText("jMenu3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Thư Viện Bảo Ngọc");
@@ -390,13 +412,6 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel22.setText("Số Lượng:");
 
-        txtMaMuon.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        txtMaMuon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaMuonActionPerformed(evt);
-            }
-        });
-
         txtMaDocGia.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         txtMaDocGia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -420,6 +435,11 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
 
         comboTenSach.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         comboTenSach.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboTenSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTenSachActionPerformed(evt);
+            }
+        });
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel23.setText("Ngày Mượn:");
@@ -470,6 +490,11 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         btnThemMoi.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         btnThemMoi.setText("Thêm Mới");
         btnThemMoi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnThemMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemMoiActionPerformed(evt);
+            }
+        });
 
         btnLuu.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         btnLuu.setText("Lưu");
@@ -519,6 +544,15 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
                 .addGap(66, 66, 66))
         );
 
+        txtMaMuon.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        txtMaMuon.setText(model.Muon.maMuonTuTang());
+
+        dteNgayTra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dteNgayTraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout muonTraSachLayout = new javax.swing.GroupLayout(muonTraSach);
         muonTraSach.setLayout(muonTraSachLayout);
         muonTraSachLayout.setHorizontalGroup(
@@ -558,9 +592,10 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
                                 .addComponent(comboTenSach, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(muonTraSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jXDatePicker4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jXDatePicker5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 70, Short.MAX_VALUE))
+                            .addComponent(dteNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dteNgayHenTra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dteNgayTra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 90, Short.MAX_VALUE))
                     .addComponent(jScrollPane2))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -574,32 +609,42 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
                     .addGroup(muonTraSachLayout.createSequentialGroup()
                         .addComponent(jLabel17)
                         .addGap(18, 18, 18)
-                        .addGroup(muonTraSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel18)
-                            .addComponent(txtMaMuon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel23)
-                            .addComponent(jXDatePicker4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(muonTraSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel19)
-                            .addComponent(txtMaDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel24)
-                            .addComponent(jXDatePicker5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
-                        .addGroup(muonTraSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel20)
-                            .addComponent(comboTenSach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(muonTraSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel21)
-                            .addComponent(txtGhiChu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(muonTraSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel22)
-                            .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel25))
-                        .addGap(31, 31, 31)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE))))
+                        .addGroup(muonTraSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(muonTraSachLayout.createSequentialGroup()
+                                .addGroup(muonTraSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel23)
+                                    .addComponent(dteNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(muonTraSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel19)
+                                    .addComponent(txtMaDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel24)
+                                    .addComponent(dteNgayHenTra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(23, 23, 23)
+                                .addGroup(muonTraSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel20)
+                                    .addComponent(comboTenSach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(29, 29, 29)
+                                .addGroup(muonTraSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel21)
+                                    .addComponent(txtGhiChu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(muonTraSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(muonTraSachLayout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addGroup(muonTraSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel22)
+                                            .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel25))
+                                        .addGap(31, 31, 31))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, muonTraSachLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(dteNgayTra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(40, 40, 40)))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
+                            .addGroup(muonTraSachLayout.createSequentialGroup()
+                                .addComponent(txtMaMuon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
 
         TrangChu.addTab("Mượn - Trả Sách", muonTraSach);
@@ -725,6 +770,11 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         });
 
         btnDaMuon.setText("Đã Mượn");
+        btnDaMuon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDaMuonActionPerformed(evt);
+            }
+        });
 
         btnChuaMuon.setText("Chưa Mượn");
 
@@ -905,10 +955,6 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtMaMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaMuonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaMuonActionPerformed
-
     private void txtMaDocGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaDocGiaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaDocGiaActionPerformed
@@ -956,6 +1002,22 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
     private void menuTCDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTCDanhMucActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuTCDanhMucActionPerformed
+
+    private void btnThemMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemMoiActionPerformed
+         
+    }//GEN-LAST:event_btnThemMoiActionPerformed
+
+    private void btnDaMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaMuonActionPerformed
+        
+    }//GEN-LAST:event_btnDaMuonActionPerformed
+
+    private void comboTenSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTenSachActionPerformed
+        
+    }//GEN-LAST:event_comboTenSachActionPerformed
+
+    private void dteNgayTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dteNgayTraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dteNgayTraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1019,6 +1081,9 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
     private org.jdesktop.swingx.JXDatePicker dateNgayHetHan;
     private org.jdesktop.swingx.JXDatePicker dateNgaySinh;
     private javax.swing.JPanel docGia;
+    private org.jdesktop.swingx.JXDatePicker dteNgayHenTra;
+    private org.jdesktop.swingx.JXDatePicker dteNgayMuon;
+    private org.jdesktop.swingx.JXDatePicker dteNgayTra;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1050,6 +1115,7 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1057,8 +1123,6 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable3;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker4;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker5;
     private javax.swing.JMenuItem menuTCDanhMuc;
     private javax.swing.JMenuItem menuTCDocGia;
     private javax.swing.JMenuItem menuTCNXB;
@@ -1082,7 +1146,10 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-      
+        if(e.getSource().equals(btnThemMoi))
+        {
+            btnThemMoi();
+        }
     }
     
     
@@ -1108,5 +1175,15 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         
     }
     
+    public void btnThemMoi()
+    {
+        TrangChuController ctrl = new TrangChuController();
+        //themMoiMuon(JTextField txtMaMuon,JTextField txtMaDocGia,JTextField txtGhiChu,JTextField txtSoLuong, JXDatePicker dteNgayMuon,JXDatePicker dteNgayHenTra, JXDatePicker dteNgayTra,JComboBox<String> comboTenSach)
+        Boolean checkDone= ctrl.themMoiMuon(txtMaMuon, txtMaDocGia, txtGhiChu, txtSoLuong, dteNgayMuon, dteNgayHenTra, dteNgayTra, comboTenSach);
+        if(checkDone==false)
+        {
+            System.out.println("thêm mới không thành công");
+        }
+    }
     
 }

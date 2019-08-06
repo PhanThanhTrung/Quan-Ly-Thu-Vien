@@ -5,6 +5,11 @@
  */
 package model;
 
+import controller.Connections;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author Phan Thanh Trung
@@ -57,5 +62,21 @@ public class CuonSach {
         this.tinhTrang = tinhTrang;
     }
     
+    
+    public static String timMaSach(String tenCuonSach)
+    {
+        Connection con= Connections.getConnection();
+        try{
+            String query= "select MaCuonSach from CUONSACH where CUONSACH.TenCuonSach = "+tenCuonSach+";";
+            PreparedStatement stm= con.prepareStatement(query);
+            ResultSet res =stm.executeQuery();
+            return res.getString(1);
+        }
+        catch(Exception e)
+        {
+            e.fillInStackTrace();
+        }
+        return null;
+    }
     
 }

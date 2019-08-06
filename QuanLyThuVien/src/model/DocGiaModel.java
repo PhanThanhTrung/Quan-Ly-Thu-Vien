@@ -42,8 +42,10 @@ public class DocGiaModel {
             String sql = "select MaDocGia from DOCGIA;";
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
+            
             while (rs.next()) {
-                Integer b = Integer.parseInt(rs.getString(1).substring(3));
+                Integer b;
+                b = Integer.parseInt(rs.getString(1).substring(3));
                 ds.add(b);
             }
         } catch (Exception e) {

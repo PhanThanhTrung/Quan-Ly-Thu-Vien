@@ -19,8 +19,8 @@ public class FormDangNhap extends javax.swing.JFrame implements ActionListener{
      * Creates new form FormDangNhap
      */
     public FormDangNhap() {
-        initComponents();
-        setLocationRelativeTo(null);
+       initComponents();
+       setLocationRelativeTo(null);
        btnDangNhap.addActionListener(this);
        btnThoat.addActionListener(this);
     }
@@ -189,9 +189,11 @@ public class FormDangNhap extends javax.swing.JFrame implements ActionListener{
     public  void btnDangNhap()
     {
         DangNhapEvents dangNhap = new DangNhapEvents();
-        dangNhap.buttonDangNhap(txtTaiKhoan, txtMatKhau);
-        new FormTrangChu().setVisible(true);
-        this.dispose();
+        boolean isLoginSuccess = dangNhap.buttonDangNhap(txtTaiKhoan, txtMatKhau);
+        if (isLoginSuccess) {
+            new FormTrangChu().setVisible(true);
+            this.dispose();
+        }
     }
     
     public static void bntThoat()
