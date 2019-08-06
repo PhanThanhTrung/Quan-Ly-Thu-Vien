@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package controller;
 
+import model.DangNhapModel;
 import controller.*;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -20,7 +21,7 @@ public class DangNhapEvents {
     {
         String username = txttaikhoan.getText();
         String password= String.valueOf(txtmatkhau.getPassword());
-        boolean con = DangNhapCtr.DangNhap(username, password);
+        boolean con = DangNhapModel.DangNhap(username, password);
         if(username.equalsIgnoreCase("")||password.equalsIgnoreCase(""))
         {
             JOptionPane.showMessageDialog(null,"Trường tài khoản, mật khẩu không được để trống","Lỗi",1);

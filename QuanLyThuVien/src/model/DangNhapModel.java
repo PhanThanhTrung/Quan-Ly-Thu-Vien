@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package model;
 
+import controller.Connections;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,7 @@ import java.sql.ResultSet;
  *
  * @author Truong Tran
  */
-public class DangNhapCtr {
+public class DangNhapModel {
     
     public static boolean DangNhap(String username, String password)
     {
