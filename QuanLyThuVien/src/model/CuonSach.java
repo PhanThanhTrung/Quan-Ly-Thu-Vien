@@ -65,18 +65,23 @@ public class CuonSach {
     
     public static String timMaSach(String tenCuonSach)
     {
+        String ans=null;
         Connection con= Connections.getConnection();
         try{
-            String query= "select MaCuonSach from CUONSACH where CUONSACH.TenCuonSach = "+tenCuonSach+";";
+            String query= "select MaCuonSach from CUONSACH where CUONSACH.TenCuonSach =?;";
             PreparedStatement stm= con.prepareStatement(query);
+            stm.setString(1, tenCuonSach);
             ResultSet res =stm.executeQuery();
-            return res.getString(1);
-        }
+            while(res.next())
+            {
+                ans = res.getString(1);
+            }
+        } 
         catch(Exception e)
         {
             e.fillInStackTrace();
         }
-        return null;
+        return ans;
     }
     
 }

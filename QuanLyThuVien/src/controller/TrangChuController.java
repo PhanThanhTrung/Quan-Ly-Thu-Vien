@@ -5,11 +5,12 @@
  */
 package controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import model.*;
 import org.jdesktop.swingx.JXDatePicker;
-import view.*;
 /**
  *
  * @author Phan Thanh Trung
@@ -37,5 +38,46 @@ public class TrangChuController {
                 
         }
         return false;
+    }
+    
+    public void dataGribViewForMuon(JTable tblDanhSach)
+    {
+        DefaultTableModel tble= (DefaultTableModel) tblDanhSach.getModel();
+        tble.setNumRows(0);
+        ArrayList<Muon> Str =  model.Muon.selectInfor();
+        int index=1;
+        for (Muon ele: Str)
+        {
+            String ngayHenTra="";
+            if(ele.getNgayHenTra()!=null)
+                ngayHenTra=ele.getNgayHenTra().toString();
+            String ngayMuon="";
+            if(ele.getNgayMuon()!=null)
+                ngayMuon=ele.getNgayMuon().toString();
+            String ngayTra="";
+            if(ele.getNgayTra()!=null)
+                ngayTra=ele.getNgayTra().toString();
+            tble.addRow(new Object[]{index,ele.getMaMuon(),ele.getMaDocGia(),ele.getTenCuonSach(),ele.getSoLuong(),ngayMuon,ngayHenTra,ngayTra,ele.getGhiChu()});
+        }
+        tblDanhSach.setModel(tble);
+    }
+    public Boolean xoaMuon(JTextField txtMaMuon,JTextField txtMaDocGia,JTextField txtGhiChu,JTextField txtSoLuong, JXDatePicker dteNgayMuon,JXDatePicker dteNgayHenTra, JXDatePicker dteNgayTra,JComboBox<String> comboTenSach){
+        String maMuon     = txtMaMuon.getText();
+        String maDocGia   = txtMaDocGia.getText();
+        String tenSach    = (String) comboTenSach.getSelectedItem();
+        String ghiChu     = txtGhiChu.getText();
+        int    soLuong    = Integer.parseInt(txtSoLuong.getText());
+        Date ngayMuon     = dteNgayMuon.getDate();
+        Date ngayHenTra   = dteNgayHenTra.getDate();
+        Date ngayTra      = dteNgayTra.getDate();
+    
+        Boolean done= model.Muon.xoaMuon(maMuon, maDocGia, tenSach, soLuong, ngayMuon, ngayHenTra, ngayTra, ghiChu);
+        if(done==false)
+        {
+            System.out.println("khong the xoa, xem lai thong tin");
+        }
+        else
+            System.out.println("xoa thanh cong");
+        return done;
     }
 }

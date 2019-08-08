@@ -7,9 +7,6 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-import model.*;
 import controller.*;
 /**
  *
@@ -29,12 +26,15 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         btnSuaDG.addActionListener(this);
         btnXoaDG.addActionListener(this);
         btnCapNhapDG.addActionListener(this);
+
         
         //tab mượn trả Sách
         //author: Trung
         btnThemMoi.addActionListener(this);
+        btnCapNhatMuon.addActionListener(this);
+        btnXoaMuon.addActionListener(this);
         
-        //hiển thị danh sách tên sách
+        //hiển thị danh sách tên sách-tab Mượn trả sách
         comboTenSach.removeAllItems();
         if(model.Muon.danhSachTenSach()!=null){
             for (String i:model.Muon.danhSachTenSach()) {
@@ -44,9 +44,13 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         else{
             comboTenSach.addItem("danh sách rỗng");
         }
+        // hiển thị data gribview
+        TrangChuController ctc= new TrangChuController();
+        ctc.dataGribViewForMuon(tblDanhSach);
         
+        //cập nhật datagribview
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -103,8 +107,8 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         jPanel1 = new javax.swing.JPanel();
         btnThemMoi = new javax.swing.JButton();
         btnLuu = new javax.swing.JButton();
-        btnCapNhat = new javax.swing.JButton();
-        btnXoa = new javax.swing.JButton();
+        btnCapNhatMuon = new javax.swing.JButton();
+        btnXoaMuon = new javax.swing.JButton();
         dteNgayMuon = new org.jdesktop.swingx.JXDatePicker();
         dteNgayHenTra = new org.jdesktop.swingx.JXDatePicker();
         txtMaMuon = new javax.swing.JTextField();
@@ -452,26 +456,7 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
 
         tblDanhSach.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "STT", "Mã Mượn", "Mã Đọc Giả", "Tên Sách", "Số Lượng", "Ngày Mượn", "Ngày Hẹn Trả", "Ngày Trả", "Ghi Chú"
@@ -505,13 +490,18 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
             }
         });
 
-        btnCapNhat.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        btnCapNhat.setText("Cập Nhật");
-        btnCapNhat.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnCapNhatMuon.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        btnCapNhatMuon.setText("Cập Nhật");
+        btnCapNhatMuon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnCapNhatMuon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatMuonActionPerformed(evt);
+            }
+        });
 
-        btnXoa.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        btnXoa.setText("Xóa");
-        btnXoa.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnXoaMuon.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        btnXoaMuon.setText("Xóa");
+        btnXoaMuon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -525,9 +515,9 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
                         .addGap(18, 18, 18)
                         .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCapNhatMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnXoaMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -539,8 +529,8 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
                     .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCapNhatMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnXoaMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(66, 66, 66))
         );
 
@@ -1019,6 +1009,10 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
     }//GEN-LAST:event_dteNgayTraActionPerformed
 
+    private void btnCapNhatMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatMuonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCapNhatMuonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1059,8 +1053,8 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JTable TableDSDocGia;
     private javax.swing.JTabbedPane TrangChu;
     private javax.swing.JButton btnCapNhapDG;
-    private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnCapNhat1;
+    private javax.swing.JButton btnCapNhatMuon;
     private javax.swing.JRadioButton btnChuaMuon;
     private javax.swing.JRadioButton btnDaMuon;
     private javax.swing.ButtonGroup btnGioiTinh;
@@ -1072,9 +1066,9 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JButton btnThemDG;
     private javax.swing.JButton btnThemMoi;
     private javax.swing.JButton btnThemMoi1;
-    private javax.swing.JButton btnXoa;
     private javax.swing.JButton btnXoa1;
     private javax.swing.JButton btnXoaDG;
+    private javax.swing.JButton btnXoaMuon;
     private javax.swing.JComboBox<String> comboTenSach;
     private javax.swing.JPanel danhMucSach;
     private org.jdesktop.swingx.JXDatePicker datNgayDangKi;
@@ -1150,6 +1144,14 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         {
             btnThemMoi();
         }
+        else if(e.getSource().equals(btnCapNhatMuon))
+        {
+             btnCapNhatMuon();
+        }
+        else if(e.getSource().equals(btnXoaMuon))
+        {
+            btnXoaMuon();
+        }
     }
     
     
@@ -1186,4 +1188,16 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         }
     }
     
+    public void btnCapNhatMuon()
+    {
+        TrangChuController ctrl= new TrangChuController();
+        ctrl.dataGribViewForMuon(tblDanhSach);
+    }
+    
+    public void btnXoaMuon()
+    {
+        TrangChuController ctrl= new TrangChuController();
+        Boolean chek=ctrl.xoaMuon(txtMaMuon, txtMaDocGia, txtGhiChu, txtSoLuong, dteNgayMuon, dteNgayHenTra, dteNgayTra, comboTenSach);
+       
+    }
 }

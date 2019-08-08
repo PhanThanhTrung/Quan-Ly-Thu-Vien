@@ -10,6 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -20,11 +23,22 @@ public class Muon {
     private String maMuon;
     private String maDocGia;
     private String maCuonSach;
-    private int    soLuong;
+    private float    soLuong;
     private Date   ngayMuon;
     private Date   ngayHenTra;
     private Date   ngayTra;
     private String ghiChu;
+    
+    // được thêm vào: Trung
+    private String tenCuonSach;
+    public String getTenCuonSach() {
+        return tenCuonSach;
+    }
+
+    public void setTenCuonSach(String TenCuonSach) {
+        this.tenCuonSach = TenCuonSach;
+    }
+    
     public String getMaMuon() {
         return maMuon;
     }
@@ -37,7 +51,7 @@ public class Muon {
         return maCuonSach;
     }
 
-    public int getSoLuong() {
+    public float getSoLuong() {
         return soLuong;
     }
 
@@ -69,7 +83,7 @@ public class Muon {
         this.maCuonSach = maCuonSach;
     }
 
-    public void setSoLuong(int soLuong) {
+    public void setSoLuong(float soLuong) {
         this.soLuong = soLuong;
     }
 
@@ -92,7 +106,7 @@ public class Muon {
     public Muon() {
     }
 
-    public Muon(String maMuon, String maDocGia, String maCuonSach, int soLuong, Date ngayMuon, Date ngayHenTra, Date ngayTra, String ghiChu) {
+    public Muon(String maMuon, String maDocGia, String maCuonSach, float soLuong, Date ngayMuon, Date ngayHenTra, Date ngayTra, String ghiChu) {
         this.maMuon = maMuon;
         this.maDocGia = maDocGia;
         this.maCuonSach = maCuonSach;
@@ -151,7 +165,7 @@ public class Muon {
         String ans="";
         int lastBorrowID=layMaMuon();
         
-        return "M"+Integer.toString(lastBorrowID);
+        return "M"+Integer.toString(lastBorrowID+1);
     }
     
     public static String[] danhSachTenSach()
@@ -183,31 +197,107 @@ public class Muon {
     
     
     
-    public static Boolean themBangMuon(String maMuon,String maDocGia,String tenCuonSach, int soLuong, Date ngayMuon, Date ngayHienTai,Date ngayTra,String ghiChu) {
+    public static Boolean themBangMuon(String maMuon,String maDocGia,String tenCuonSach, float soLuong, Date ngayMuon, Date ngayHenTra,Date ngayTra,String ghiChu) {
         // [MaMuon],[MaDocGia],[MaCuonSach],[SoLuong],[NgayMuon],[NgayHenTra],[NgayTra],[GhiChu]
         String maCuonSach=CuonSach.timMaSach(tenCuonSach);
         if(maCuonSach!=null)
         {   
             Connection con = Connections.getConnection();
             try{
-                String query="insert into MUON (MaMuon,MaDocGia,MaCuonSach,SoLuong,NgayMuon,NgayHenTra,NgayTra,Ghichu) value(?,?,?,?,?,?,?,?);";
+                
+                String query="insert into MUON (MaMuon,MaDocGia,MaCuonSach,SoLuong,NgayMuon,NgayHenTra,NgayTra,Ghichu) values(?,?,?,?,?,?,?,?);";
                 PreparedStatement stm= con.prepareStatement(query);
+                
                 stm.setString(1,maMuon);
+                
                 stm.setString(2,maDocGia);
                 stm.setString(3,maCuonSach);
-                stm.setInt(4,soLuong);
-                stm.setDate(5, (java.sql.Date) ngayMuon);
-                stm.setDate(6, (java.sql.Date) ngayHienTai);
-                stm.setDate(7, (java.sql.Date) ngayTra);
+                stm.setFloat(4,soLuong);
+                java.sql.Timestamp ngayMuonStamp = new java.sql.Timestamp(ngayMuon.getTime());
+                stm.setTimestamp(5, ngayMuonStamp);
+                java.sql.Timestamp ngayHenTraStamp = new java.sql.Timestamp(ngayHenTra.getTime());
+                stm.setTimestamp(6, ngayHenTraStamp);
+                java.sql.Timestamp ngayTraStamp = new java.sql.Timestamp(ngayTra.getTime());
+                stm.setTimestamp(7, ngayTraStamp);
                 stm.setString(8,ghiChu);
                 stm.execute();
+                
                 return true;
             }
             catch(Exception e)
             {
+                System.out.println(e.toString());
                 e.fillInStackTrace();
             }
         }
         return false;
+    }
+    
+    public static ArrayList<Muon> selectInfor()
+    {
+        ArrayList<Muon> arr= new ArrayList<>(100);
+        int indexRow=0, indexColumn=0;
+        String sql="select MUON.MaMuon,MUON.MaDocGia,CUONSACH.TenCuonSach,MUON.SoLuong,MUON.NgayMuon,MUON.NgayHenTra,MUON.NgayTra,MUON.GhiChu from MUON "
+                + "inner join CUONSACH on MUON.MaCuonSach = CUONSACH.MaCuonSach;";
+        try{
+            Connection con= Connections.getConnection();
+            PreparedStatement stm= con.prepareStatement(sql);
+            //
+            ResultSet res= stm.executeQuery();
+            
+            while(res.next())
+            {
+                
+                Muon temp = new Muon();
+                temp.setMaMuon(res.getString(1));
+                temp.setMaDocGia(res.getString(2));
+                temp.setTenCuonSach(res.getString(3));
+                temp.setSoLuong(Float.parseFloat(res.getString(4)));
+                temp.setNgayMuon(res.getDate(5));
+                temp.setNgayHenTra(res.getDate(6));
+                temp.setNgayTra(res.getDate(7));
+                temp.setGhiChu(res.getString(8));
+                arr.add(temp);
+            }
+        }
+        catch(Exception e)
+        {
+            
+            System.out.println(e.toString());
+            e.fillInStackTrace();
+        }
+        
+        return arr;
+    }
+    
+    public static Boolean xoaMuon(String maMuon, String maDocGia, String tenCuonSach, float soLuong, Date ngayMuon, Date ngayHenTra, Date ngayTra, String ghiChu ) {
+        Boolean ans=false;
+        if(Muon.checkMaMuon(maMuon)==false)
+            return false;
+        Connection con = Connections.getConnection();
+        try{
+            String maCuonSach=CuonSach.timMaSach(tenCuonSach);
+            String sql= "delete from MUON where MUON.MaMuon=? and MUON.MaDocGia=? and MUON.MaCuonSach=? and MUON.SoLuong=? and MUON.NgayMuon=? and MUON.NgayHenTra=? and MUON.NgayTra=? and MUON.GhiChu=?;";
+            PreparedStatement stm= con.prepareStatement(sql);
+            stm.setString(1, maMuon);
+            stm.setString(2, maDocGia);
+            stm.setString(3, maCuonSach);
+            stm.setFloat(4,  soLuong);
+            java.sql.Timestamp ngayMuonStamp = new java.sql.Timestamp(ngayMuon.getTime());
+            stm.setTimestamp(5, ngayMuonStamp);
+            java.sql.Timestamp ngayHenTraStamp = new java.sql.Timestamp(ngayHenTra.getTime());
+            stm.setTimestamp(6, ngayHenTraStamp);
+            java.sql.Timestamp ngayTraStamp = new java.sql.Timestamp(ngayTra.getTime());
+            stm.setTimestamp(7, ngayTraStamp);
+            stm.setString(8, ghiChu);
+            stm.execute();
+            ans=true;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+            e.fillInStackTrace();
+        }
+        return ans;
     }
 }
