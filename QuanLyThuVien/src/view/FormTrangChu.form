@@ -1016,39 +1016,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txtDauSach" min="-2" pref="299" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                                      <Component id="txtTenSach" min="-2" pref="299" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                                      <Component id="txtMaSach" min="-2" pref="299" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel30" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel28" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtTuaSach" min="-2" pref="299" max="-2" attributes="0"/>
-                                          <Component id="txtTacGia" min="-2" pref="299" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel31" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1056,24 +1024,58 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtLoaiSach" min="-2" pref="299" max="-2" attributes="0"/>
+                                          <Component id="txtLoaiSachDMS" min="-2" pref="299" max="-2" attributes="0"/>
                                           <Group type="102" alignment="1" attributes="0">
-                                              <Component id="btnDaMuon" min="-2" max="-2" attributes="0"/>
+                                              <Component id="btnDaMuonDMS" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="btnChuaMuon" min="-2" max="-2" attributes="0"/>
+                                              <Component id="btnChuaMuonDMS" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
+                                  <Component id="jScrollPane4" min="-2" pref="430" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="40" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnXoa1" alignment="1" min="-2" pref="187" max="-2" attributes="0"/>
-                                  <Component id="btnLuu1" alignment="1" min="-2" pref="187" max="-2" attributes="0"/>
-                                  <Component id="btnCapNhat1" alignment="1" min="-2" pref="187" max="-2" attributes="0"/>
-                                  <Component id="btnThemMoi1" alignment="1" min="-2" pref="187" max="-2" attributes="0"/>
+                                  <Component id="btnXoaDMS" alignment="1" min="-2" pref="187" max="-2" attributes="0"/>
+                                  <Component id="btnLuuDMS" alignment="1" min="-2" pref="187" max="-2" attributes="0"/>
+                                  <Component id="btnCapNhatDMS" alignment="1" min="-2" pref="187" max="-2" attributes="0"/>
+                                  <Component id="btnThemMoiDMS" alignment="1" min="-2" pref="187" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel30" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel28" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txtTuaSachDMS" alignment="1" min="-2" pref="299" max="-2" attributes="0"/>
+                                          <Component id="txtTacGiaDMS" alignment="1" min="-2" pref="299" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="txtDauSachDMS" min="-2" pref="299" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                          <Component id="txtTenSachDMS" min="-2" pref="299" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                          <Component id="txtMaSachDMS" min="-2" pref="299" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1087,47 +1089,47 @@
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtMaSach" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtMaSachDMS" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtTenSach" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtTenSachDMS" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtDauSach" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtDauSachDMS" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtTuaSach" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtTuaSachDMS" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtTacGia" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtTacGiaDMS" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtLoaiSach" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtLoaiSachDMS" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnDaMuon" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnChuaMuon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnDaMuonDMS" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnChuaMuonDMS" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnThemMoi1" min="-2" pref="72" max="-2" attributes="0"/>
+                              <Component id="btnThemMoiDMS" min="-2" pref="72" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnCapNhat1" min="-2" pref="72" max="-2" attributes="0"/>
+                              <Component id="btnCapNhatDMS" min="-2" pref="72" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnLuu1" min="-2" pref="72" max="-2" attributes="0"/>
+                              <Component id="btnLuuDMS" min="-2" pref="72" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnXoa1" min="-2" pref="72" max="-2" attributes="0"/>
+                              <Component id="btnXoaDMS" min="-2" pref="72" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
@@ -1151,7 +1153,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable3">
+                <Component class="javax.swing.JTable" name="tblDanhMucSach">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="5" rowCount="40">
@@ -1258,7 +1260,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JEditorPane" name="jEditorPane1">
+                <Component class="javax.swing.JTextField" name="txtNoiDungTomLuoc">
                 </Component>
               </SubComponents>
             </Container>
@@ -1270,49 +1272,49 @@
                 <Property name="text" type="java.lang.String" value="N&#x1ed9;i Dung T&#xf3;m L&#x1b0;&#x1ee3;c: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtLoaiSach">
+            <Component class="javax.swing.JTextField" name="txtLoaiSachDMS">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtTacGia">
+            <Component class="javax.swing.JTextField" name="txtTacGiaDMS">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtTuaSach">
+            <Component class="javax.swing.JTextField" name="txtTuaSachDMS">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtDauSach">
+            <Component class="javax.swing.JTextField" name="txtDauSachDMS">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtTenSach">
+            <Component class="javax.swing.JTextField" name="txtTenSachDMS">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtMaSach">
+            <Component class="javax.swing.JTextField" name="txtMaSachDMS">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnXoa1">
+            <Component class="javax.swing.JButton" name="btnXoaDMS">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="20" style="0"/>
@@ -1324,7 +1326,7 @@
                 <Property name="horizontalAlignment" type="int" value="4"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnLuu1">
+            <Component class="javax.swing.JButton" name="btnLuuDMS">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="20" style="0"/>
@@ -1336,7 +1338,7 @@
                 <Property name="horizontalAlignment" type="int" value="4"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnCapNhat1">
+            <Component class="javax.swing.JButton" name="btnCapNhatDMS">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="20" style="0"/>
@@ -1348,7 +1350,7 @@
                 <Property name="horizontalAlignment" type="int" value="4"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnThemMoi1">
+            <Component class="javax.swing.JButton" name="btnThemMoiDMS">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="20" style="0"/>
@@ -1360,18 +1362,18 @@
                 <Property name="horizontalAlignment" type="int" value="4"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemMoi1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemMoiDMSActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="btnDaMuon">
+            <Component class="javax.swing.JRadioButton" name="btnDaMuonDMS">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x110;&#xe3; M&#x1b0;&#x1ee3;n"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDaMuonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDaMuonDMSActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="btnChuaMuon">
+            <Component class="javax.swing.JRadioButton" name="btnChuaMuonDMS">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ch&#x1b0;a M&#x1b0;&#x1ee3;n"/>
               </Properties>

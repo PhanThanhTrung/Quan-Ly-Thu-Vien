@@ -80,4 +80,22 @@ public class TrangChuController {
             System.out.println("xoa thanh cong");
         return done;
     }
+    
+    
+    //tab Danh Mục Sách
+    
+    public static void danhMucSach(JTable danhMucSach)
+    {
+        DefaultTableModel tble=(DefaultTableModel) danhMucSach.getModel();
+        tble.setNumRows(0);
+        // stt, Ten cuon Sach,Ma dau sach, loai sach, tac gia
+        int index=1;
+        ArrayList<model.DanhMucSach> str = DanhMucSach.getDanhSach();
+        
+        for(model.DanhMucSach ele: str)
+        {
+            tble.addRow( new Object[] {index,ele.getTenCuonSach(),ele.getMaDauSach(), ele.getLoaiSach(),ele.getTacGia()});
+        }
+        danhMucSach.setModel(tble);
+    }
 }
