@@ -185,7 +185,7 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         jLabel9.setText("Chi Tiết Độc Giả");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel10.setText(model.DocGiaModel.MaDocGiaTuTang());
+        jLabel10.setText(model.DocGia.MaDocGiaTuTang());
 
         txtTenDocGia.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         txtTenDocGia.addActionListener(new java.awt.event.ActionListener() {

@@ -356,7 +356,7 @@
                   <Font name="Tahoma" size="20" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="model.DocGiaModel.MaDocGiaTuTang()" type="code"/>
+                  <Connection code="model.DocGia.MaDocGiaTuTang()" type="code"/>
                 </Property>
               </Properties>
             </Component>
