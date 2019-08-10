@@ -353,7 +353,7 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
                         .addGroup(docGiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtTenDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 111, Short.MAX_VALUE)
+                        .addGap(18, 18, Short.MAX_VALUE)
                         .addGroup(docGiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -727,6 +727,7 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         txtMaSachDMS.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         btnXoaDMS.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        btnXoaDMS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete_page.png"))); // NOI18N
         btnXoaDMS.setText("Xóa");
         btnXoaDMS.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnXoaDMS.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -737,11 +738,13 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         btnLuuDMS.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         btnCapNhatDMS.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        btnCapNhatDMS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/edit_page.png"))); // NOI18N
         btnCapNhatDMS.setText("Cập Nhật");
         btnCapNhatDMS.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCapNhatDMS.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         btnThemMoiDMS.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        btnThemMoiDMS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/book_accept.png"))); // NOI18N
         btnThemMoiDMS.setText("Thêm Mới");
         btnThemMoiDMS.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnThemMoiDMS.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -867,7 +870,7 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
                     .addGroup(danhMucSachLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         TrangChu.addTab("Danh Mục Sách", new javax.swing.ImageIcon(getClass().getResource("/icon/open_folder_full.png")), danhMucSach); // NOI18N
@@ -904,6 +907,7 @@ public class FormTrangChu extends javax.swing.JFrame implements ActionListener{
         jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
 
         menuTTPM.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        menuTTPM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/coffee_cup.png"))); // NOI18N
         menuTTPM.setText("Thông Tin Phần Mềm");
         jMenu2.add(menuTTPM);
 
