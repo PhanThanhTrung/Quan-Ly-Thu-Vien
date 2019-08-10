@@ -138,7 +138,28 @@ public class DocGiaController {
             row[6] = u.getNgayDangKi();
             row[7] = u.getNgayHetHanDK();
             row[8] = u.getSoDienThoai();
-        
+            model.addRow(row);
+            index++;
+        }
+    }
+    
+    public static void hienThiDS_TKMaDG(JTable jTable, JTextField maDocGia)
+    {
+        ArrayList<DocGia> dsDG = DocGia.timKiem_DocGia_TheoMa(maDocGia.getText());
+        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+        model.setRowCount(0);
+        Object[] row = new Object[9];
+        int index = 1;
+        for (DocGia u : dsDG) {
+            row[0] = index;
+            row[1] = u.getMaDocGia();
+            row[2] = u.getHoTenDocGia();
+            row[3] = u.getNgaySinh();
+            row[4] = u.getGioiTinhStr();
+            row[5] = u.getDiaChiStr();
+            row[6] = u.getNgayDangKi();
+            row[7] = u.getNgayHetHanDK();
+            row[8] = u.getSoDienThoai();
             model.addRow(row);
             index++;
         }

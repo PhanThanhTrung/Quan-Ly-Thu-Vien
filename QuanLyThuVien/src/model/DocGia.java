@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import javax.swing.ButtonGroup;
@@ -348,6 +350,7 @@ public class DocGia {
         return false;
     }
 
+    //Hàm này sửa thông tin của 1 độc giả
     public boolean sua_DocGia(String maDocGia, String hoDocGia, String tenLotDocGia, String tenDocGia, boolean GioiTinh,
             Date ngaySinh, String soNha, String duong, String quan, String soDienThoai, Date ngayDangKi, Date ngayHetHanDK) {
         Connection con = Connections.getConnection();
@@ -382,6 +385,7 @@ public class DocGia {
         }
     }
 
+    //Hàm này lấy thông tin của 1 độc giả
     public static ArrayList<DocGia> layDS_DocGia() {
         ArrayList<DocGia> dsDG = new ArrayList<>();
         Connection con = Connections.getConnection();
@@ -407,4 +411,36 @@ public class DocGia {
 
     }
 
+    //Hàm này tìm kiếm thông tin của 1 độc giả
+    public static ArrayList<DocGia> timKiem_DocGia_TheoMa(String maDocGia)
+    {
+        ArrayList<DocGia> dsTK = new ArrayList<>();
+        Connection con = Connections.getConnection();
+        String sql = "SELECT * from DOCGIA WHERE MaDocGia = ? ;";
+        try {
+            PreparedStatement prs = con.prepareStatement(sql);
+            prs.setString(1,maDocGia);
+            ResultSet rs = prs.executeQuery();       
+            while (rs.next()) {
+                DocGia a = new DocGia();
+                a.setHoTenDocGia(rs.getString(3) + " " + rs.getString(4) + " " + rs.getString(5));
+                a.setDiaChiStr(rs.getString(8) + ", " + rs.getString(9) + ", " + rs.getString(10));
+                if (rs.getInt(6) == 1) {
+                    a.setGioiTinhStr("Nam");
+                } else {
+                    a.setGioiTinhStr("Nữ");
+                }
+                dsTK.add(new DocGia(rs.getString(2), a.getHoTenDocGia(), a.getGioiTinhStr(), rs.getDate(7), a.getDiaChiStr(), rs.getString(11), rs.getDate(12), rs.getDate(13)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dsTK;
+    }
+    
+   
+    
+    
+    
+    
 }

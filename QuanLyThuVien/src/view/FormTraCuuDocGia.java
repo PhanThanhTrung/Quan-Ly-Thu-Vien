@@ -5,6 +5,8 @@
  */
 package view;
 
+import controller.DocGiaController;
+
 /**
  *
  * @author Truong Tran
@@ -17,6 +19,7 @@ public class FormTraCuuDocGia extends javax.swing.JFrame {
     public FormTraCuuDocGia() {
         initComponents();
         setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -46,6 +49,8 @@ public class FormTraCuuDocGia extends javax.swing.JFrame {
         txtSoNha = new javax.swing.JTextField();
         txtDuong = new javax.swing.JTextField();
         txtTimKiemTDDG = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableDSDocGia = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,6 +116,24 @@ public class FormTraCuuDocGia extends javax.swing.JFrame {
             }
         });
 
+        tableDSDocGia.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "STT", "Mã Độc Giả", "Họ Tên", "Ngày Sinh", "Giới Tính", "Địa Chỉ", "Ngày Đăng Kí", "Ngày Hết Hạn", "Số Điện Thoại"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableDSDocGia);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,26 +141,33 @@ public class FormTraCuuDocGia extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel34)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtTimKiemTDDG, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(158, 158, 158)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel34)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtTimKiemTDDG, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtSoNha, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(jLabel36)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtDuong, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtTimKiemSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtSoNha, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
-                                .addComponent(jLabel36)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtDuong, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtTimKiemSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addComponent(btnTimKiemDG, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(195, Short.MAX_VALUE))
+                                .addGap(261, 261, 261)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 12, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1328, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(504, 504, 504)
+                .addComponent(btnTimKiemDG, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -152,7 +182,7 @@ public class FormTraCuuDocGia extends javax.swing.JFrame {
                             .addComponent(txtTimKiemHDG, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(261, 261, 261))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(txtTimKiemMDG)
+                            .addComponent(txtTimKiemMDG, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
                             .addGap(36, 36, 36)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
@@ -163,7 +193,7 @@ public class FormTraCuuDocGia extends javax.swing.JFrame {
                             .addComponent(jLabel37)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtQuan)))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(343, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,9 +211,11 @@ public class FormTraCuuDocGia extends javax.swing.JFrame {
                     .addComponent(txtDuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(txtTimKiemSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(59, 59, 59)
                 .addComponent(btnTimKiemDG)
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addGap(53, 53, 53)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(110, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(56, 56, 56)
@@ -203,7 +235,7 @@ public class FormTraCuuDocGia extends javax.swing.JFrame {
                         .addComponent(txtQuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(18, 18, 18)
                     .addComponent(jLabel16)
-                    .addContainerGap(295, Short.MAX_VALUE)))
+                    .addContainerGap(558, Short.MAX_VALUE)))
         );
 
         pack();
@@ -214,7 +246,9 @@ public class FormTraCuuDocGia extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTimKiemHDGActionPerformed
 
     private void btnTimKiemDGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemDGActionPerformed
-        // TODO add your handling code here:
+            // TODO add your handling code here:
+            
+            DocGiaController.hienThiDS_TKMaDG(tableDSDocGia, txtTimKiemMDG);
     }//GEN-LAST:event_btnTimKiemDGActionPerformed
 
     private void txtTimKiemTDDGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemTDDGActionPerformed
@@ -267,6 +301,8 @@ public class FormTraCuuDocGia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tableDSDocGia;
     private javax.swing.JTextField txtDuong;
     private javax.swing.JTextField txtQuan;
     private javax.swing.JTextField txtSoNha;
