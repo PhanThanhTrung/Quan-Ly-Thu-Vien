@@ -133,9 +133,9 @@ public class Muon {
                 ans=Math.max(value,ans);
             }
         }
-        catch(SQLException e)
+        catch(Exception e)
         {
-            e.fillInStackTrace();
+            e.printStackTrace();
         }
         return ans;
     }
@@ -157,7 +157,7 @@ public class Muon {
         }
         catch(Exception e)
         {
-            e.fillInStackTrace();
+            e.printStackTrace();
         }
         return null;
     }
@@ -186,7 +186,7 @@ public class Muon {
        }
        catch(Exception e)
        {
-           e.fillInStackTrace();
+           e.printStackTrace();
        }
        if(index==0)
        {
@@ -209,7 +209,6 @@ public class Muon {
                 PreparedStatement stm= con.prepareStatement(query);
                 
                 stm.setString(1,maMuon);
-                
                 stm.setString(2,maDocGia);
                 stm.setString(3,maCuonSach);
                 stm.setFloat(4,soLuong);
@@ -227,7 +226,7 @@ public class Muon {
             catch(Exception e)
             {
                 System.out.println(e.toString());
-                e.fillInStackTrace();
+                e.printStackTrace();
             }
         }
         return false;
@@ -235,19 +234,16 @@ public class Muon {
     
     public static ArrayList<Muon> selectInfor()
     {
-        ArrayList<Muon> arr= new ArrayList<>(100);
+        ArrayList<Muon> arr= new ArrayList<>();
         int indexRow=0, indexColumn=0;
         String sql="select MUON.MaMuon,MUON.MaDocGia,CUONSACH.TenCuonSach,MUON.SoLuong,MUON.NgayMuon,MUON.NgayHenTra,MUON.NgayTra,MUON.GhiChu from MUON "
                 + "inner join CUONSACH on MUON.MaCuonSach = CUONSACH.MaCuonSach;";
         try{
             Connection con= Connections.getConnection();
             PreparedStatement stm= con.prepareStatement(sql);
-            //
             ResultSet res= stm.executeQuery();
-            
             while(res.next())
             {
-                
                 Muon temp = new Muon();
                 temp.setMaMuon(res.getString(1));
                 temp.setMaDocGia(res.getString(2));
@@ -264,7 +260,7 @@ public class Muon {
         {
             
             System.out.println(e.toString());
-            e.fillInStackTrace();
+            e.printStackTrace();
         }
         
         return arr;
@@ -296,7 +292,7 @@ public class Muon {
         catch(Exception e)
         {
             System.out.println(e);
-            e.fillInStackTrace();
+            e.printStackTrace();
         }
         return ans;
     }

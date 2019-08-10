@@ -27,7 +27,8 @@ public class DangNhapEvents {
             JOptionPane.showMessageDialog(null,"Trường tài khoản, mật khẩu không được để trống","Lỗi",1);
             return false;
         }else
-        
+            
+            
         if(con)
         {
             JOptionPane.showMessageDialog(null,"Đăng nhập thành công!");
